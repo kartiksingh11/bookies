@@ -1,0 +1,54 @@
+BookVault: Professional Hybrid Recommender System
+BookVault is a sophisticated recommendation engine that moves beyond simple similarity by blending three distinct machine learning strategies: Content-Based Filtering (NLP), Collaborative Filtering (User Correlations), and Metadata Bias (Author consistency).
+
+Features
+Hybrid Scoring Engine: Combines three data signals into a unified "Match Score".
+
+40% Content Similarity: Uses TF-IDF and Cosine Similarity to analyze book descriptions.
+
+40% User Correlation: Uses Pearson’s R correlation to identify books rated similarly by the community.
+
+20% Author Bias: Boosts rankings for books written by the same author to ensure brand consistency.
+
+Interactive Streamlit UI: A clean, banking-themed interface for real-time book discovery.
+
+Performance Optimized: Implements caching to handle high-dimensional matrices efficiently without memory bottlenecks.
+
+Cold-Start Resilience: Uses fallback logic to provide content-based suggestions even when user rating data is sparse.
+
+Tech Stack
+Language: Python 3.9+
+
+Data Analysis: pandas, numpy
+
+Machine Learning: scikit-learn (TfidfVectorizer, linear_kernel)
+
+Frontend: Streamlit
+
+Dataset Structure
+The system requires three specific CSV files to function:
+
+listing.csv: Contains metadata including book_id, name, author, and genre.
+
+books.csv: Contains user interaction data such as user_id, book_id, and user_rating.
+
+description.csv: Contains the textual description for each book_id used for NLP analysis.
+
+Getting Started
+1. Installation
+Clone the repository and install the dependencies:
+pip install pandas numpy scikit-learn streamlit
+
+2. Configuration
+Ensure your CSV datasets are placed in the root directory. The engine dynamically maps book_id across files to ensure data integrity.
+
+3. Execution
+Launch the interactive web application:
+streamlit run streamlit_app.py
+
+How the Hybrid Logic Works
+The core of the system is the ProfessionalRecommender class. It calculates a weighted sum for every book in the database relative to your search using the following formula:
+
+Final Score = (Content_Score * 0.4) + (Correlation_Score * 0.4) + (Author_Bias * 0.2)
+
+This ensures that the top results are not only similar in plot but are also highly regarded by users who share your taste and belong to your favorite authors.
